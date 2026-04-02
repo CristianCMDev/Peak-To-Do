@@ -1,0 +1,79 @@
+.task-detail-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.task-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.task-description {
+  font-size: 14px;
+  color: #333;
+}
+
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+}
+
+.task-footer .category {
+  background: #2dd36f;
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+ion-checkbox {
+  --size: 20px;
+  --checkbox-background-checked: #2dd36f;
+  --border-color-checked: #2dd36f;
+}
+
+.edit-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 0px;
+  margin: 0px;
+}
+
+.button-name {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.button-description {
+  display: flex;
+}
+
+.button-category {
+  display: flex;
+  align-items: center;
+}
+
+.date {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}

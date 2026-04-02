@@ -1,0 +1,80 @@
+.card-task {
+    width: 92%;
+    margin: 12px auto;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+}
+
+.task-desc {
+    margin: 10px 0;
+    color: #000000;
+    font-size: 14px;
+}
+
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.category {
+    background: #2dd36f;
+    color: #000;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.date {
+    font-size: 12px;
+    color: #888;
+}
+
+ion-checkbox {
+    --size: 18px;
+    --checkbox-background-checked: #2dd36f;
+    --border-color-checked: #2dd36f;
+}
+
+ion-item {
+    --background: transparent;
+    overflow: visible !important;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    border: none;
+}
+
+.btn-new {
+    display: block;
+    width: 92%;
+    margin: 12px auto;
+    border-radius: 12px;
+}
+
+.searchbar {
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+.selected-tags {
+    display: flex;
+    gap: 8px;
+    margin-left: 10px;
+}

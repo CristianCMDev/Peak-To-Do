@@ -1,0 +1,75 @@
+<ion-button expand="block" class="btn-new" id="open-modal">
+
+  <ion-modal #mainModal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Crear nueva tarea</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input required name="taskName" label="Nombre de la tarea" labelPlacement="stacked" type="text"
+            placeholder="Nombre de la tarea" [(ngModel)]="name">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-textarea required name="taskDescription" label="Descripción" labelPlacement="stacked"
+            placeholder="Describe la tarea" [(ngModel)]="description" autoGrow="true">
+          </ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Categoría</ion-label>
+          <ion-select required placeholder="Selecciona una categoría" [(ngModel)]="selectedCategory">
+            <ion-select-option value="trabajo">Trabajo</ion-select-option>
+            <ion-select-option value="personal">Personal</ion-select-option>
+            <ion-select-option value="estudio">Estudio</ion-select-option>
+            <ion-select-option *ngFor="let cat of categories" [value]="cat.name">
+              {{ cat.name }}
+            </ion-select-option>
+          </ion-select>
+          <ion-modal #modalCategory (willDismiss)="onWillDismiss($event)">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Nueva categoría</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="cancelCategory()">Cancelar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+
+              <ion-content class="ion-padding">
+                <ion-item>
+                  <ion-input name="taskName" label="Nombre de la categoría" labelPlacement="stacked"
+                    [(ngModel)]="nameCategory">
+                  </ion-input>
+                </ion-item>
+
+                <ion-button expand="block" (click)="confirmCategory()">
+                  Guardar
+                </ion-button>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+
+        <ion-button expand="block" fill="outline" (click)="modalCategory.present()">
+          + Añadir categoría
+        </ion-button>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-icon name="add" slot="start"></ion-icon>
+  Crear nueva tarea
+</ion-button>

@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Editar Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Editar Categorías</ion-title>
+    </ion-toolbar>
+    <ion-button class="btn-new" (click)="modalCategoryCreate.present()">
+      <ion-icon name="add" slot="start"></ion-icon>
+      Crear nueva categoría
+    </ion-button>
+  </ion-header>
+
+
+  <ion-list *ngIf="categories.length > 0; else emptyState">
+    <ion-item *ngFor="let cat of categories; let i = index">
+      <ion-label>{{ cat.name }}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="danger" (click)="eliminarCategoria(cat.id)">
+          Eliminar
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+
+  <ng-template #emptyState>
+    <div class="ion-text-center ion-padding">
+      <p>No hay categorías todavía.</p>
+    </div>
+  </ng-template>
+
+  <ion-modal #modalCategoryCreate [breakpoints]="[0, 0.5, 1]" initialBreakpoint="0.5">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Nueva categoría</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input required name="taskName" label="Nombre de la categoría:" labelPlacement="stacked"
+            [(ngModel)]="nameCategory">
+          </ion-input>
+        </ion-item>
+
+        <ion-button expand="block" (click)="confirmCategory()">
+          Guardar
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>

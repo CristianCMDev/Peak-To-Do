@@ -1,0 +1,142 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="task-detail-card">
+
+    <div class="task-header">
+      <ion-checkbox [(ngModel)]="task.completed" ngDefaultControl (ionChange)="guardarEstado(task)"></ion-checkbox>
+
+      <div [ngSwitch]="editModeName">
+        <div *ngSwitchCase="true">
+          <ion-item>
+            <ion-input label="Editar nombre" placeholder="{{name}}" [(ngModel)]="name" ngDefaultControl
+              (ionBlur)="guardarCambiosNombre()" (keyup.enter)="guardarCambiosNombre()"></ion-input>
+          </ion-item>
+        </div>
+        <div *ngSwitchCase="false">
+          <div class="button-name" (click)="editModeName = true">
+            <h2>{{name}}</h2>
+            <ion-button fill="clear" size="small" class="edit-button">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+        <div *ngSwitchDefault>Error</div>
+      </div>
+
+    </div>
+
+
+    <div [ngSwitch]="editModeDescription">
+      <div *ngSwitchCase="true">
+        <ion-item>
+          <ion-textarea label="Editar descripción" [(ngModel)]="description" ngDefaultControl
+            (ionBlur)="guardarCambiosDescripcion()" (keyup.enter)="guardarCambiosDescripcion()">
+          </ion-textarea>
+        </ion-item>
+      </div>
+      <div *ngSwitchCase="false">
+        <div class="button-description" (click)="editModeDescription = true" (ionblur)="editModeDescription = false">
+          <p class="task-description">{{ description }}</p>
+          <ion-button fill="clear" size="small" class="edit-button">
+            <ion-icon name="pencil-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+      <div *ngSwitchDefault>Error</div>
+    </div>
+
+
+    <div class="task-footer">
+
+      <div class="button-category" (click)="modalCategory.present()">
+        <span class="category">{{ selectedCategorie }}</span>
+        <ion-button fill="clear" size="small" class="edit-button">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <span class="date">{{ task.createdAt | date:'medium' }}</span>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="medium" (click)="volver()">
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button color="danger" (click)="eliminarTarea()">
+        Eliminar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+<ion-modal #modalCategory [breakpoints]="[0, 0.7, 1]" initialBreakpoint="0.7">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Cambiar categoría</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalCategory.dismiss()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+
+      <ion-item>
+        <ion-label>Selecciona categoría</ion-label>
+        <ion-select [(ngModel)]="selectedCategorie" placeholder="Selecciona una categoría" ngDefaultControl onchange="console.log(selectedCategorie)">
+          <ion-select-option value="trabajo">Trabajo</ion-select-option>
+          <ion-select-option value="personal">Personal</ion-select-option>
+          <ion-select-option value="estudio">Estudio</ion-select-option>
+          <ion-select-option *ngFor="let cat of categories" [value]="cat.name">
+            {{ cat.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" fill="outline" (click)="modalCategoryCreate.present()">
+        + Añadir categoría
+      </ion-button>
+      <ion-button expand="block" (click)="guardarCambiosCategoria()">Aplicar cambios</ion-button>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal #modalCategoryCreate [breakpoints]="[0, 0.5, 1]" initialBreakpoint="0.5">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Nueva categoría</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input name="taskName" label="Nombre de la categoría" labelPlacement="stacked" [(ngModel)]="nameCategory">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="confirmCategory()">
+        Guardar
+      </ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
