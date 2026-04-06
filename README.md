@@ -30,7 +30,7 @@ Permite crear, editar y eliminar tareas, organizar categorías y marcar tareas c
 1. **Clona el repositorio:**
 
 ```bash
-git clone https://github.com/tu-usuario/peak-to-do.git
+git clone https://github.com/CristianCMDev/peak-to-do.git
 cd peak-to-do
 
 2. Instala dependencias:
